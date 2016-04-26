@@ -3,26 +3,26 @@ Game = {
   start: function() {
     // Start crafty and set a background color so that we can see it's working
 Crafty.init(600, 300);
-Crafty.background('#FFFFFF url(http://eskipaper.com/images/grass-background-28.jpg) no-repeat center center');
+Crafty.background('#FFFFFF url(assets/grass.jpeg) no-repeat center center');
 //Paddles
-Crafty.e("Paddle, 2D, DOM, Color, Multiway")
-    .color('rgb(127,0,0)')
-    .attr({ x: 20, y: 100, w: 10, h: 100 })
+Crafty.e("Paddle, 2D, DOM, Image, Multiway")
+    .image("assets/catwithsheild.png")
+    .attr({ x: 20, y: 100})
     .multiway(
-        100,
-        { W: -90, S: 90 }
+        300,
+        { S: -90, X: 90 }
     );
-Crafty.e("2D, DOM, Image, Multiway")                            .image("http://41.media.tumblr.com/f44c309f3cd3c2562fb990659605559a/tumblr_inline_nwbv3bsO251tx16pf_400.png")
- .attr({ x: 300, y: 0})
+Crafty.e("Paddle, 2D, DOM, Image, Multiway")                            .image("assets/Dogwithshield.png")
+ .attr({ x: 500, y: 100})
     .multiway(
-        100 ,
-        { UP_ARROW: -90, DOWN_ARROW: 90 }
+        150 ,
+        { K: -90, M: 90 }
     );
       
 //Ball
-Crafty.e("2D, DOM, Color, Collision")
-    .color('rgb(0,0,255)')
-    .attr({ x: 300, y: 150, w: 10, h: 10,
+Crafty.e("2D, DOM, Image, Collision")
+    .image("assets/Bomb.png")
+    .attr({ x: 300, y: 150,
             dX: Crafty.math.randomInt(2, 5),
             dY: Crafty.math.randomInt(2, 5) })
     .bind('EnterFrame', function () {
