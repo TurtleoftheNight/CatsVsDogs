@@ -1,3 +1,4 @@
+var bombsPassedLeft=0, bombsPassedRight=0;
 Game = {
   // Initialize and start our game
   start: function() {
@@ -18,7 +19,10 @@ Crafty.e("Paddle, 2D, DOM, Image, Multiway")                            .image("
         150 ,
         { K: -90, M: 90 }
     );
-      
+
+      Crafty.e("2D, DOM, Image")                           
+                   .image("assets/explosionright.png")
+                   .attr({ x:0, y: 100});
 //Ball
 Crafty.e("2D, DOM, Image, Collision")
     .image("assets/Bomb.png")
@@ -31,11 +35,17 @@ Crafty.e("2D, DOM, Image, Collision")
             this.dY *= -1;
 
         if (this.x > 600) {
+            Crafty.audio.play("explosion",1,1.0); //play sound once with volume of 100%
             this.x = 300;
             Crafty("LeftPoints").each(function () {
-                this.text(++this.points + " Points") });
+                this.text(++this.points + " Points");
+               Crafty.e("2D, DOM, Image")                           
+                   .image("assets/explosionright.png")
+                   .attr({ x: 0, y: 100});
+            });
         }
         if (this.x < 10) {
+            Crafty.audio.play("explosion",1,1.0); //play sound once with volume of 100%
             this.x = 300;
             Crafty("RightPoints").each(function () {
                 this.text(++this.points + " Points") });
@@ -57,3 +67,12 @@ Crafty.e("RightPoints, DOM, 2D, Text")
     .text("0 Points");
   }
 }
+
+//Music
+Crafty.audio.add({
+  backgroundMusic: ["assets/Carefree.mp3"],
+    explosion:["assets/SonicBoom-SoundBible.com-876321507.mp3"]
+});
+
+//play and repeat forever
+Crafty.audio.play("backgroundMusic", -1);
