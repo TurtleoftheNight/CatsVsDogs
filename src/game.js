@@ -20,15 +20,12 @@ Crafty.e("Paddle, 2D, DOM, Image, Multiway")                            .image("
         { K: -90, M: 90 }
     );
 
-      Crafty.e("2D, DOM, Image")                           
-                   .image("assets/explosionright.png")
-                   .attr({ x:0, y: 100});
 //Ball
 Crafty.e("2D, DOM, Image, Collision")
     .image("assets/Bomb.png")
     .attr({ x: 300, y: 150,
-            dX: Crafty.math.randomInt(2, 5),
-            dY: Crafty.math.randomInt(2, 5) })
+            dX: Crafty.math.randomInt(5, 10),
+            dY: Crafty.math.randomInt(5, 10) })
     .bind('EnterFrame', function () {
         //hit floor or roof
         if (this.y <= 0 || this.y >= 290)
@@ -39,9 +36,7 @@ Crafty.e("2D, DOM, Image, Collision")
             this.x = 300;
             Crafty("LeftPoints").each(function () {
                 this.text(++this.points + " Points");
-               Crafty.e("2D, DOM, Image")                           
-                   .image("assets/explosionright.png")
-                   .attr({ x: 0, y: 100});
+               
             });
         }
         if (this.x < 10) {
